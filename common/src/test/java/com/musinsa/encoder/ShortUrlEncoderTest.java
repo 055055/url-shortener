@@ -17,8 +17,8 @@ class ShortUrlEncoderTest {
 
         String encode = encoder.encode( Integer.MAX_VALUE);
         System.out.println("encode = " + encode);
-
-        int decode = encoder.decode(encode);
+        //encode.subString(1)을통해 / 제거
+        int decode = encoder.decode(encode.substring(1));
         System.out.println("decode = " + decode);
 
         assertNotNull(encode);

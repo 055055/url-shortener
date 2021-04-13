@@ -24,6 +24,11 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
 
 + 소스코드가 담긴 github.
 + github의 readme에는 해당 웹서버를 리눅스 기준으로 실행하기 위해 필요한 설치/빌드 방법이 작성되어 있어야 합니다.
+    + sudo yum install java-11-openjdk-devel
+    + sudo /usr/sbin/alternatives --config java (java11 select)
+    + sudo yum install git
+    + git clone https://github.com/055055/url-shortener.git
+    
 
 + 단축 URL 생성 
 <img width="1433" alt="make-short-url" src="https://user-images.githubusercontent.com/42599161/114555875-158b8700-9ca3-11eb-8448-04ad15a4dd0d.png">
