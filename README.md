@@ -19,16 +19,34 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
 
 + Unit test 및 Integration test 작성.
 
+### 기술 
++ java 11
++ thymeleaf
++ spring-boot
++ spring-boot-starter-data-jpa
++ spring-boot-starter-validation
++ com.h2database
++ sweetalert
++ jquery
++ bootstrap  
++ datatables
++ multiple gradle
++ lombok
++ spring-boot-starter-test'
+
 
 ### 프로젝트 제출물
 
 + 소스코드가 담긴 github.
 + github의 readme에는 해당 웹서버를 리눅스 기준으로 실행하기 위해 필요한 설치/빌드 방법이 작성되어 있어야 합니다.
-    + sudo yum install java-11-openjdk-devel
-    + sudo /usr/sbin/alternatives --config java (java11 select)
-    + sudo yum install git
-    + git clone https://github.com/055055/url-shortener.git
-    
+    + sudo yum install java-11-openjdk-devel  (자바 11 설치)
+    + sudo /usr/sbin/alternatives --config java (자바 11 선택)
+    + sudo yum install git (깃 설치)
+    + git clone https://github.com/055055/url-shortener.git (프로젝트 클론)
+    + cd url-shortener/
+    + ./gradlew build (프로젝트 빌드)
+    +  nohup java -jar ./url-shortener/build/libs/url-shortener-0.0.1-SNAPSHOT.jar 2>&1 &    (프로젝트 실행)
+    + http://localhost:8081/h2-console/  내장 h2 database
 
 + 단축 URL 생성 
 <img width="1433" alt="make-short-url" src="https://user-images.githubusercontent.com/42599161/114555875-158b8700-9ca3-11eb-8448-04ad15a4dd0d.png">
