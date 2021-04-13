@@ -1,0 +1,10 @@
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+
+
+}

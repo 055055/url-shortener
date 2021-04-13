@@ -1,0 +1,38 @@
+# URL_Shortening Project
+
+### 프로젝트 설명
+URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원래 URL로 리다이렉트하는 URL Shortening Service
+예) https://en.wikipedia.org/wiki/URL_shortening => http://localhost/JZfOQNro
+
+
+### 프로젝트 요건
+
++ URL 입명력폼 제공 및 결과 출력
++ URL Shortening Key는 8 Character 이내로 생성되어야 합니다.
++ 동일한 URL에 대한 요청은 동일한 Shortening Key로 응답해야 합니다.
++ 동일한 URL에 대한 요청 수 정보를 가져야 한다(화면 제공 필수 아님)
++ Shortening된 URL을 요청받으면 원래 URL로 리다이렉트 합니다.
++ Database 사용은 필수 아님
+
+
+### 가산점
+
++ Unit test 및 Integration test 작성.
+
+
+### 프로젝트 제출물
+
++ 소스코드가 담긴 github.
++ github의 readme에는 해당 웹서버를 리눅스 기준으로 실행하기 위해 필요한 설치/빌드 방법이 작성되어 있어야 합니다.
+
++ 단축 URL 생성 
+<img width="1433" alt="make-short-url" src="https://user-images.githubusercontent.com/42599161/114555875-158b8700-9ca3-11eb-8448-04ad15a4dd0d.png">
+
++ 단축 URL 생성 확인
+<img width="719" alt="short-url-data-table" src="https://user-images.githubusercontent.com/42599161/114555950-2c31de00-9ca3-11eb-9a25-0dbd7678c0b6.png">
+
+
+
+
+
+

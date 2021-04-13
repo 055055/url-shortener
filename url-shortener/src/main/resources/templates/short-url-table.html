@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <header th:include="layout/header.html"></header>
+        <body>
+            <table id="dataTable"  class="ui celled table" style="width:100%">
+                <thead>
+                <tr>
+                    <th>생성 URL</th>
+                    <th>단축 URL</th>
+                    <th>url 호출 건수</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>생성 URL</th>
+                    <th>단축 URL</th>
+                    <th>url 호출 건수</th>
+                </tr>
+                </tfoot>
+            </table>
+        </body>
+    <footer th:include="layout/footer.html"></footer>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table=  $('#dataTable').DataTable(
+                {
+                    "paging": true,
+                    "ordering": true,
+                    "searching": true,
+                    ajax : {
+                        method:"get",
+                        url: "/v1/short-url/",
+                    },
+                    columns: [
+                        {data: 'originUrl'},
+                        {data: 'url'},
+                        {data: 'reqCount'}
+                    ],
+                    dom: 'Bfrtip',
+                    select: {
+                        style: 'multi'
+                    }
+                });
+            });
+    </script>
+</html>

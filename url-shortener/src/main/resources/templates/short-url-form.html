@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <header th:include="layout/header.html"></header>
+        <body>
+            <div class="card">
+                <div class="card-header">
+                    단축 URL 생성
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">단축 URL을 생성할 데이터를 입력해 주세요.</h5>
+                    <p class="card-text">
+                        <a href="http://localhost:8081/c1">생성된 전체 단축 URL 확인</a>
+                    </p>
+                    <div class="mb-2 row">
+                        <div class="input-group">
+                            <span class="input-group-text">변경할 URL </span>
+                            <input type="text" id="originUrlDomain" placeholder="http://localhost:8080" class="form-control">
+                            <input type="text" id="originUrlPathParam" placeholder="/v1/user/3" class="form-control">
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" type="button" id="convertShortUrl">생성</button>
+                </div>
+            </div>
+        </body>
+    <footer th:include="layout/footer.html"></footer>
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+
+            $('#convertShortUrl').on("click",function () {
+                var domain = $('#originUrlDomain').val();
+                var pathParam = $('#originUrlPathParam').val();
+
+                if(domain === '' || pathParam ===''){
+                    Swal.fire({
+                        icon: 'error',
+                        title: '요청 값 확인',
+                        html: 'URL을 확인해주세요.(도메인, 요청값)'
+                    })
+                    return;
+                }
+
+                var url="/v1/short-url";
+                var obj =  new Object();
+                obj.domain = domain;
+                obj.pathParam = pathParam;
+                ajaxPost(url,JSON.stringify(obj), shortUrlCallBack);
+
+            });
+
+
+            function shortUrlCallBack(response, jqXHR){
+                var title = '';
+                var text = '';
+                var icon = '';
+
+                if(jqXHR.status == 201){
+                    var jsonObj = JSON.parse(response);
+                    icon = 'success',
+                    title = '단축 URL 생성',
+                    text = '단축 URL : '+jsonObj.url+'<br>'
+                        +'원본 URL : '+jsonObj.originUrl+'<br>'
+                        +'생성 요청 건수 : '+jsonObj.reqCount;
+                }else{
+                    var jsonObj = JSON.parse(jqXHR.responseText);
+                    var errorFields = "";
+                    if(!!jsonObj.fieldValues){
+                        for (var i=0; i<jsonObj.fieldValues.length; i++){
+                            errorFields += jsonObj.fieldValues[i].reason+'<br>';
+                        }
+                    }
+                    icon = 'error';
+                    title = '단축 URL 생성 실패'+'('+jsonObj.code+')\n'+jsonObj.message;
+                    text = errorFields;
+                }
+
+                Swal.fire({
+                    icon: icon,
+                    title: title,
+                    html: text
+                })
+
+            };
+        })
+    </script>
+</html>

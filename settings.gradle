@@ -1,0 +1,3 @@
+rootProject.name = 'api'
+include 'common'
+include 'url-shortener'
