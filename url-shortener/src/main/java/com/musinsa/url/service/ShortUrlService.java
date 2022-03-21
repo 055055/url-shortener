@@ -11,5 +11,4 @@ public interface ShortUrlService {
     String findOriginUrlByShortUrlKey(String shortUrl);
 
     List<ShortUrlResDto> getAllShortUrl();
-
 }

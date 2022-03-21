@@ -17,8 +17,6 @@ public class MainController {
 
     @GetMapping("/{shortUrl}")
     public RedirectView shortUrlRedirect(HttpServletRequest req) {
-        String shortUrl = req.getRequestURI();
-        String redirectURl = shortUrlService.findOriginUrlByShortUrlKey(shortUrl);
-        return new RedirectView(redirectURl);
+        return new RedirectView(shortUrlService.findOriginUrlByShortUrlKey(req.getRequestURI()));
     }
 }
