@@ -16,7 +16,7 @@ public class ShortUrlEncoder extends Base62Encoder {
             sb.append(BASE62_CHARACTERS.charAt((seq % BASE62_CHARACTERS.length())));
             seq /= BASE62_CHARACTERS.length();
         }
-        log.debug("short url suffix : {}", sb);
+        log.debug("short url suffix {}", sb);
         if (sb.length() > 8) throw new CommonException(CommonError.SHORT_URL_LENGTH_EXCEEDED);
 
         sb.insert(0, "/");
@@ -27,7 +27,7 @@ public class ShortUrlEncoder extends Base62Encoder {
     public int decode(String shortUrl) {
         int decodeNum = 0;
         int multipleNum = 1;
-        log.debug("short url : {}", shortUrl);
+        log.debug("short url {}", shortUrl);
 
         for (int i = 0; i < shortUrl.length(); i++) {
             int num = BASE62_CHARACTERS.indexOf(shortUrl.charAt(i));

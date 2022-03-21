@@ -107,7 +107,7 @@ class ShortUrlRepositoryTest {
 
         //when
         SHORT_URL_SAVE_SUCCESS();
-        ShortUrl save = shortUrlRepository.findOriginUrlByKey(shortUrlKey)
+        ShortUrl save = shortUrlRepository.findByKey(shortUrlKey)
                 .orElseThrow(() -> new CommonException(CommonError.SERVICE_ERROR));
 
         //then

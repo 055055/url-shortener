@@ -40,7 +40,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
     @Override
     public String getOriginUrl(String key) {
         log.debug(key);
-        ShortUrl result = shortUrlRepository.findOriginUrlByKey(key).orElseThrow(()
+        ShortUrl result = shortUrlRepository.findByKey(key).orElseThrow(()
                 -> new CommonException(CommonError.PAGE_NOT_FOUND));
         return result.getOriginUrl();
     }
@@ -53,7 +53,8 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                         new ShortUrlResDto(
                                 shortUrl.getUrl(),
                                 shortUrl.getOriginUrl(),
-                                shortUrl.getReqCount())
+                                shortUrl.getReqCount()
+                        )
                 ).collect(Collectors.toList());
     }
 }
