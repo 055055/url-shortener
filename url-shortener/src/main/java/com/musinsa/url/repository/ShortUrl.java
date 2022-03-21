@@ -40,9 +40,8 @@ public class ShortUrl extends BaseEntity {
         this.reqCount += 1;
     }
 
-    public void updateShortUrl(String domain, String key) {
+    public void saveDomainAndKey(String domain, String key) {
         this.url = domain + key;
         this.key = key;
-        addReqCount();
     }
 }

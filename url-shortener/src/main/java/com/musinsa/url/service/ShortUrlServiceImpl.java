@@ -25,17 +25,16 @@ public class ShortUrlServiceImpl implements ShortUrlService {
     @Override
     @Transactional
     public ShortUrlResDto getOrCreateShortUrl(ShortUrlReqDto req) {
-        ShortUrl result = shortUrlRepository.findByOriginUrl(req.getOriginUrl());
-        if (result != null) {
-            result.addReqCount();
-            return new ShortUrlResDto(result.getUrl(), result.getOriginUrl(), result.getReqCount());
+        ShortUrl shortUrl = shortUrlRepository.findByOriginUrl(req.getOriginUrl());
+        if (shortUrl != null) {
+            shortUrl.addReqCount();
         } else {
             Base62Encoder encoder = new ShortUrlEncoder();
-            ShortUrl shortUrl = shortUrlRepository.save(req.createShortUrl());
+            shortUrl = shortUrlRepository.save(req.createShortUrl());
             String shortKey = encoder.encode((shortUrl.getSeq().intValue() + 100));
-            shortUrl.updateShortUrl(req.getDomain(), shortKey);
-            return new ShortUrlResDto(shortUrl.getUrl(), shortUrl.getOriginUrl(), shortUrl.getReqCount());
+            shortUrl.saveDomainAndKey(req.getDomain(), shortKey);
         }
+        return new ShortUrlResDto(shortUrl.getUrl(), shortUrl.getOriginUrl(), shortUrl.getReqCount());
     }
 
     @Override

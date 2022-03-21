@@ -21,7 +21,7 @@ public class ShortUrlReqDto {
     public ShortUrl createShortUrl() {
         return ShortUrl.builder()
                 .originUrl(this.domain + this.pathParam)
-                .reqCount(0L)
+                .reqCount(1L)
                 .build();
     }
 }
