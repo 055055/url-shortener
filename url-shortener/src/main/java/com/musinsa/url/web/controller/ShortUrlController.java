@@ -21,7 +21,6 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class ShortUrlController {
-
     private final ShortUrlService shortUrlService;
 
     @GetMapping
@@ -33,7 +32,6 @@ public class ShortUrlController {
     public @ResponseBody ResponseEntity<?> getOrCreateShortUrl(@RequestBody @Valid ShortUrlReqDto req){
         return new ResponseEntity<>(shortUrlService.getOrCreateShortUrl(req), HttpStatus.CREATED);
     }
-
 
     @GetMapping("/table")
     public String shortUrlTable(){
@@ -47,6 +45,4 @@ public class ShortUrlController {
         data.put("data",allShortUrl);
         return data;
     }
-
-
 }

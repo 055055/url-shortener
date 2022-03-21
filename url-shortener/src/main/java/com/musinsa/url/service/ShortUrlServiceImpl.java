@@ -20,9 +20,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ShortUrlServiceImpl implements ShortUrlService {
-
     private final ShortUrlRepository shortUrlRepository;
-
 
     @Override
     @Transactional

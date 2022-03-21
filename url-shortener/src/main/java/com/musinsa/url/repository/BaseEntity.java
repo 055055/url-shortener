@@ -11,17 +11,14 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 
-
 @ToString
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntitiy {
-
+public class BaseEntity {
     @CreatedDate
     private LocalDateTime createDate;
 
     @LastModifiedDate
     private LocalDateTime modifiedDate;
-
 }

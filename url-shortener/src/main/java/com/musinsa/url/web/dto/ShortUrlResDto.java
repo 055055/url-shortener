@@ -8,11 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShortUrlResDto {
-
     private String url;
-
     private String originUrl;
-
     private Long reqCount;
-
 }

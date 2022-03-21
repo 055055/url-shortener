@@ -20,8 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         controllers = ShortUrlController.class
         )
 class ShortUrlControllerTest extends BasicControllerTest{
-
-
     @MockBean
     ShortUrlService shortUrlService;
 
@@ -31,7 +29,6 @@ class ShortUrlControllerTest extends BasicControllerTest{
         mockMvc.perform(get("/v1/short-url"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("short-url-form.html"));
-
     }
 
     @DisplayName("단축 URL 생성 성공")
@@ -47,7 +44,6 @@ class ShortUrlControllerTest extends BasicControllerTest{
 
         given(this.shortUrlService.getOrCreateShortUrl(any(ShortUrlReqDto.class))).willReturn(res);
 
-
         //when
         ResultActions result = mockMvc.perform(post("/v1/short-url")
                 .accept(MediaType.APPLICATION_JSON_VALUE)
@@ -61,6 +57,4 @@ class ShortUrlControllerTest extends BasicControllerTest{
                 .andExpect(jsonPath("$.originUrl").value(domain+pathParm))
                 .andExpect(jsonPath("$.reqCount").value(reqCount));
     }
-
-
 }

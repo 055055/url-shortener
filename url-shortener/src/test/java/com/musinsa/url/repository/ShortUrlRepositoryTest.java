@@ -15,7 +15,6 @@ class ShortUrlRepositoryTest {
     @DisplayName("단축 URL 엔티티저장 성공 ")
     @Test
     public void SHORT_URL_SAVE_SUCCESS(){
-
         //given
         String domain= "https://www.musinsa.com";
         String pathParm = "/?m=magazine&tvMode=on&uid=16027";
@@ -43,7 +42,6 @@ class ShortUrlRepositoryTest {
     @DisplayName("단축 URL 엔티티 요청 수 증가 성공 ")
     @Test
     public void SHORT_URL_REQ_COUNT_UPDATE_SUCCESS(){
-
         //given
         String domain= "https://www.musinsa.com";
         String pathParm = "/?m=magazine&tvMode=on&uid=16027";
@@ -68,7 +66,6 @@ class ShortUrlRepositoryTest {
         assertThat(save.getKey()).isEqualTo(shortUrlKey);
         assertThat(save.getReqCount()).isEqualTo(reqCount+1);
     }
-
 
     @DisplayName("단축 URL 엔티티 요청 수정 성공 ")
     @Test
@@ -101,12 +98,10 @@ class ShortUrlRepositoryTest {
     @DisplayName("URL 키 기준 조회 성공 ")
     @Test
     public void ORIGIN_URL_FIND_BY_KEY_SUCCESS(){
-
         //given
         String domain= "https://www.musinsa.com";
         String pathParm = "/?m=magazine&tvMode=on&uid=16027";
         String shortUrlKey = "/cdG1";
-
 
         //when
         SHORT_URL_SAVE_SUCCESS();
@@ -117,8 +112,4 @@ class ShortUrlRepositoryTest {
         assertThat(save.getOriginUrl()).isEqualTo(domain+pathParm);
         assertThat(save.getKey()).isEqualTo(shortUrlKey);
     }
-
-
-
-
 }

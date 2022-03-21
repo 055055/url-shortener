@@ -14,7 +14,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @Disabled
 public abstract class BasicControllerTest {
-
     protected MockMvc mockMvc;
 
     @Autowired
@@ -25,12 +24,10 @@ public abstract class BasicControllerTest {
 
 
     @BeforeEach
-    public void setMockMvc(){
+    public void setMockMvc() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx)
                 .alwaysDo(print())
                 .addFilters(new CharacterEncodingFilter("UTF-8", true)) //application/json;charset=UTF-8
                 .build();
-
-
     }
 }

@@ -12,15 +12,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AppRunnder implements ApplicationRunner {
     private final ShortUrlService shortUrlService;
-
     /**
      * 초기 앱 구동시 단축URL 생성
-     * @param args
-     * @throws Exception
      */
     @Override
-    public void run(ApplicationArguments args) throws Exception {
-         shortUrlService.getOrCreateShortUrl(new ShortUrlReqDto("http://localhost:8081","/v1/short-url/table"));
-
+    public void run(ApplicationArguments args) {
+        shortUrlService.getOrCreateShortUrl(
+                new ShortUrlReqDto("http://localhost:8081", "/v1/short-url/table")
+        );
     }
 }

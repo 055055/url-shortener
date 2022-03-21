@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class ShortUrl extends BaseEntitiy {
+public class ShortUrl extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,14 +37,13 @@ public class ShortUrl extends BaseEntitiy {
         this.reqCount = reqCount;
     }
 
-    public void addReqCount(){
-        this.reqCount +=1;
+    public void addReqCount() {
+        this.reqCount += 1;
     }
 
-    public void updateShortUrl(String domain, String key){
-        this.url = domain+key;
+    public void updateShortUrl(String domain, String key) {
+        this.url = domain + key;
         this.key = key;
         addReqCount();
     }
 }
-
