@@ -1,6 +1,9 @@
 package com.musinsa.error;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
@@ -15,7 +18,6 @@ public class ResultError {
     private HttpStatus httpStatus;
     private List<FieldValue> fieldValues;
 
-
     @Getter
     @Builder
     public static class FieldValue {
@@ -23,5 +25,4 @@ public class ResultError {
         private Object value;
         private String reason;
     }
-
 }
