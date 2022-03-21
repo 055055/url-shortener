@@ -4,11 +4,13 @@ import com.musinsa.error.CommonError;
 import com.musinsa.error.CommonException;
 import lombok.extern.slf4j.Slf4j;
 
+import static com.musinsa.encoder.Base62Encoder.BASE62_CHARACTERS;
+
 @Slf4j
 public class ShortUrlEncoder extends Base62Encoder {
 
     @Override
-    public String encode(int seq) throws CommonException {
+    public String encode(int seq) {
         StringBuilder sb = new StringBuilder();
         while (seq > 0) {
             sb.append(BASE62_CHARACTERS.charAt((seq % BASE62_CHARACTERS.length())));
@@ -22,7 +24,7 @@ public class ShortUrlEncoder extends Base62Encoder {
     }
 
     @Override
-    public int decode(String shortUrl) throws CommonException {
+    public int decode(String shortUrl) {
         int decodeNum = 0;
         int multipleNum = 1;
         log.debug("short url : {}", shortUrl);

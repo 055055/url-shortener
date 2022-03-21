@@ -28,7 +28,7 @@ public class ShortUrlController {
     }
 
     @GetMapping("/")
-    public Map<String, List> getAllShortUrl() {
-        return singletonMap("data", shortUrlService.getAllShortUrl());
+    public Map<String, List> getAllShortUrls() {
+        return singletonMap("data", shortUrlService.getAllShortUrls());
     }
 }

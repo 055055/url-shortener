@@ -14,9 +14,4 @@ public class CommonException extends RuntimeException {
         super(new CommonException());
         this.commonError = commonError;
     }
-
-    public CommonException(Throwable cause, CommonError commonError) {
-        super(cause);
-        this.commonError = commonError;
-    }
 }

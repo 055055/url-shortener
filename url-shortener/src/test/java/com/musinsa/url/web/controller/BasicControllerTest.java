@@ -22,7 +22,6 @@ public abstract class BasicControllerTest {
     @Autowired
     protected ObjectMapper objectMapper;
 
-
     @BeforeEach
     public void setMockMvc() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx)

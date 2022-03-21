@@ -16,9 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(
-        controllers = ShortUrlController.class
-        )
+@WebMvcTest(controllers = ShortUrlController.class)
 class ShortUrlControllerTest extends BasicControllerTest{
     @MockBean
     ShortUrlService shortUrlService;
@@ -26,7 +24,7 @@ class ShortUrlControllerTest extends BasicControllerTest{
     @DisplayName("단축 URL 생성 페이지 성공")
     @Test
     public void SHORT_URL_FORM_VIEW_SUCCESS() throws Exception{
-        mockMvc.perform(get("/v1/short-url"))
+        mockMvc.perform(get("/v1/short-urls"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("short-url-form.html"));
     }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface ShortUrlService {
     ShortUrlResDto getOrCreateShortUrl(ShortUrlReqDto req);
 
-    String findOriginUrlByShortUrlKey(String shortUrl);
+    String getOriginUrl(String shortUrl);
 
-    List<ShortUrlResDto> getAllShortUrl();
+    List<ShortUrlResDto> getAllShortUrls();
 }

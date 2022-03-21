@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class AppRunnder implements ApplicationRunner {
+public class AppRunner implements ApplicationRunner {
     private final ShortUrlService shortUrlService;
     /**
      * 초기 앱 구동시 단축URL 생성

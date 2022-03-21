@@ -13,8 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -24,56 +24,37 @@ public class ShortUrlServiceImpl implements ShortUrlService {
 
     @Override
     @Transactional
-    public ShortUrlResDto getOrCreateShortUrl(ShortUrlReqDto req) throws CommonException {
-        try{
-            ShortUrl result = shortUrlRepository.findByOriginUrl(req.getOriginUrl());
-            if(result != null){
-                result.addReqCount();
-                return new ShortUrlResDto(result.getUrl(), result.getOriginUrl(), result.getReqCount());
-            }else{
-                ShortUrl save = shortUrlRepository.save(req.createShortUrl());
-                Base62Encoder encoder = new ShortUrlEncoder();
-                String shortKey = encoder.encode((save.getSeq().intValue()+100));
-                save.updateShortUrl(req.getDomain(), shortKey);
-                return new ShortUrlResDto(save.getUrl(), save.getOriginUrl(), save.getReqCount());
-            }
-        }catch (CommonException ce){
-            log.info("CommonException : {}",ce.getCommonError());
-            throw new CommonException(ce.getCommonError());
-        }catch (Exception e){
-            log.info("Exception : {}",e.getMessage(),e);
-            throw new CommonException(e, CommonError.SERVICE_ERROR);
+    public ShortUrlResDto getOrCreateShortUrl(ShortUrlReqDto req) {
+        ShortUrl result = shortUrlRepository.findByOriginUrl(req.getOriginUrl());
+        if (result != null) {
+            result.addReqCount();
+            return new ShortUrlResDto(result.getUrl(), result.getOriginUrl(), result.getReqCount());
+        } else {
+            Base62Encoder encoder = new ShortUrlEncoder();
+            ShortUrl shortUrl = shortUrlRepository.save(req.createShortUrl());
+            String shortKey = encoder.encode((shortUrl.getSeq().intValue() + 100));
+            shortUrl.updateShortUrl(req.getDomain(), shortKey);
+            return new ShortUrlResDto(shortUrl.getUrl(), shortUrl.getOriginUrl(), shortUrl.getReqCount());
         }
     }
 
     @Override
-    public String findOriginUrlByShortUrlKey(String key) throws CommonException {
-        try{
-            log.debug("key : {}"+key);
-            ShortUrl result = shortUrlRepository.findOriginUrlByKey(key).orElseThrow(()
-                                                        -> new CommonException(CommonError.PAGE_NOT_FOUND));
-            return result.getOriginUrl();
-        }catch (CommonException ce){
-            log.info("CommonException : {}",ce.getCommonError());
-            throw new CommonException(ce.getCommonError());
-        }catch (Exception e){
-            log.info("Exception : {}",e.getMessage(),e);
-            throw new CommonException(e, CommonError.SERVICE_ERROR);
-        }
+    public String getOriginUrl(String key) {
+        log.debug(key);
+        ShortUrl result = shortUrlRepository.findOriginUrlByKey(key).orElseThrow(()
+                -> new CommonException(CommonError.PAGE_NOT_FOUND));
+        return result.getOriginUrl();
     }
 
     @Override
-    public List<ShortUrlResDto> getAllShortUrl() throws CommonException {
-        ArrayList result = new ArrayList();
-        try {
-            List<ShortUrl> shortUrls = shortUrlRepository.findAll();
-            for (ShortUrl shortUrl: shortUrls )  {
-                result.add(new ShortUrlResDto(shortUrl.getUrl(), shortUrl.getOriginUrl(), shortUrl.getReqCount()));
-            }
-           return result;
-        }catch (Exception e){
-           log.info("Exception : {}",e.getMessage(),e);
-           throw new CommonException(e, CommonError.SERVICE_ERROR);
-        }
+    public List<ShortUrlResDto> getAllShortUrls() {
+        return shortUrlRepository.findAll()
+                .stream()
+                .map(shortUrl ->
+                        new ShortUrlResDto(
+                                shortUrl.getUrl(),
+                                shortUrl.getOriginUrl(),
+                                shortUrl.getReqCount())
+                ).collect(Collectors.toList());
     }
 }
