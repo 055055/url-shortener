@@ -18,7 +18,7 @@ public class AppRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         shortUrlService.getOrCreateShortUrl(
-                new ShortUrlReqDto("http://localhost:8081", "/v1/short-urls/table")
+                new ShortUrlReqDto("http://localhost:8080", "/v1/short-urls/table")
         );
     }
 }

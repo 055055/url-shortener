@@ -48,6 +48,9 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
     +  nohup java -jar ./url-shortener/build/libs/url-shortener-0.0.1-SNAPSHOT.jar 2>&1 &    (프로젝트 실행)
     + http://localhost:8081/h2-console/  내장 h2 database
 
++ container
+  + docker image build -t url-shortener:latest .
+  + docker run -p 8080:8080 --name url-shortener url-shortener:latest
 
 + 단축 URL 생성
   <img width="1432" alt="make-short-url" src="https://user-images.githubusercontent.com/42599161/114569612-1aa30300-9cb0-11eb-82e2-0953ab7f5356.png">
